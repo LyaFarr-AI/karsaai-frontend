@@ -4,6 +4,7 @@ import requests
 
 API_URL_CB = "https://lyafarr-ai-chatbot-backend.hf.space/chatbot"
 
+API_URL_CB = "https://lyafarr-ai-chatbot-backend.hf.space"
 
 #def generate_poem_remote(prompt):
 #    response = requests.post(f"{API_URL_CB}/generate-puisi", json={"prompt": prompt})
@@ -12,6 +13,7 @@ API_URL_CB = "https://lyafarr-ai-chatbot-backend.hf.space/chatbot"
 #def generate_pantun_remote(prompt):
 #    response = requests.post(f"{API_URL_CB}/generate-pantun", json={"prompt": prompt})
 #    return response.json().get("result", "❌ Terjadi kesalahan.")
+
 
 def chatbot_remote(prompt):
     response = requests.post(f"{API_URL_CB}/chatbot", json={"prompt": prompt})
