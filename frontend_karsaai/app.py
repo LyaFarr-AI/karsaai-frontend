@@ -2,7 +2,7 @@
 import streamlit as st
 import requests
 
-API_URL_CB = "https://lyafarr-ai-chatbot-backend.hf.space/chatbot"
+#API_URL_CB = "https://lyafarr-ai-chatbot-backend.hf.space/chatbot"
 
 API_URL_CB = "https://lyafarr-ai-chatbot-backend.hf.space"
 
