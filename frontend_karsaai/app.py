@@ -24,7 +24,7 @@ def generate_poem_remote(prompt):
     return response.json().get("result", "Terjadi kesalahan.")
 
 def generate_pantun_remote(prompt):
-    response = requests.post(f"{API_URL_CB}/chatbot", json={"prompt": f"Buatkan 1 {jenis} dengan {prompt}.\nFormat 4 baris, tiap baris pisahkan dengan baris baru (\\n).: {prompt}"})
+    response = requests.post(f"{API_URL_CB}/chatbot", json={"prompt": f"Buatkan 1 {jenis} dengan: {prompt}"})
     return response.json().get("result", "Terjadi kesalahan.")
 
 
