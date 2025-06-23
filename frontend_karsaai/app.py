@@ -157,7 +157,7 @@ elif menu == "Tentang":
             <li><code>PyTorch</code></li>
             <li><code>Streamlit</code></li>
             <li><code>Transformers (Hugging Face)</code></li>
-            <li><code>LSTM</code> untuk puisi & pantun, dan <code>GPT-2</code> untuk chatbot</li>
+            <li><code>LSTM</code> untuk puisi & pantun, dan <code>Gemma yang sudah di finetuning jadi Eunoia-Gemma-9B-o1-Indo-i1 </code> untuk chatbot</li>
         </ul>
         </div>
         """,
