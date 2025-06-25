@@ -1,4 +1,3 @@
-# app.py
 import streamlit as st
 import requests
 
@@ -6,11 +5,11 @@ import requests
 
 API_URL_CB = "https://lyafarr-ai-chatbot-backend.hf.space"
 
-#def generate_poem_remote(prompt):
+#def generate_poem_lstm_remote(prompt):
 #    response = requests.post(f"{API_URL_CB}/generate-puisi", json={"prompt": prompt})
 #    return response.json().get("result", "❌ Terjadi kesalahan.")
 #
-#def generate_pantun_remote(prompt):
+#def generate_pantun_lstm_remote(prompt):
 #    response = requests.post(f"{API_URL_CB}/generate-pantun", json={"prompt": prompt})
 #    return response.json().get("result", "❌ Terjadi kesalahan.")
 
@@ -23,8 +22,8 @@ def generate_poem_remote(prompt):
     response = requests.post(f"{API_URL_CB}/chatbot", json={"prompt": f"Tolong buatkan puisi bertema: {prompt}"})
     return response.json().get("result", "Terjadi kesalahan.")
 
-def generate_pantun_remote(prompt):
-    response = requests.post(f"{API_URL_CB}/chatbot", json={"prompt": f"Buatkan 1 Pantun saja, dengan {jenis} dan: {prompt}"})
+def generate_pantun_remote(jenis, prompt):
+    response = requests.post(f"{API_URL_CB}/chatbot", json={"prompt": f"Buatkan 1 Pantun saja, dengan {jenis} dan tema {prompt}"})
     return response.json().get("result", "Terjadi kesalahan.")
 
 
@@ -123,7 +122,7 @@ elif menu == "Pantun":
     if generate and tema:
         full_prompt = f"{jenis} - {tema}"
         with st.spinner("🌀 Sedang membuat pantun..."):
-            result = generate_pantun_remote(full_prompt)
+            result = generate_pantun_remote(jenis, tema)
         st.subheader("🎭 Hasil Pantun")
         st.markdown(result)
         st.session_state["history"].append(("Pantun", full_prompt, result))
