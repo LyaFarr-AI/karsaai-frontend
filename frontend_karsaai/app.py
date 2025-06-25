@@ -97,17 +97,34 @@ if menu == "Beranda":
 
 
 # ========================= PUISI =========================
-if menu == "Puisi":
+elif menu == "Puisi":
     st.header("📜 Generator Puisi")
+
+    # Pilihan model
+    opsi_model = st.selectbox("🎛️ Pilih model AI:", ["Quality", "Fast"])
+
+    if opsi_model == "Quality":
+        st.caption("⚡ Quality (Direkomendasikan) – Output lebih puitis dan bermakna, waktu generate 1–2 menit.")
+    else:
+        st.caption("🚀 Fast (Mode Alpha – LSTM) – Hasil lebih cepat, cocok untuk eksplorasi tema sederhana, masih dalam tahap pengembangan.")
+
+    # Input tema
     seed = st.text_input("Masukkan tema / kata awal:")
     generate = st.button("Generate Puisi")
 
     if generate and seed:
         with st.spinner("🔄 Sedang membuat puisi..."):
-            result = generate_poem_remote(seed)
+
+            if opsi_model == "Fast":
+                result = generate_poem_lstm(seed)
+                full_prompt = f"FastModel - {seed}"
+            else:
+                result = generate_poem_remote(seed)
+                full_prompt = f"Quality - {seed}"
+
         st.subheader("📝 Hasil Puisi")
         st.markdown(result)
-        st.session_state["history"].append(("Puisi", seed, result))
+        st.session_state["history"].append(("Puisi", full_prompt, result))
 
 # ========================= PANTUN =========================
 elif menu == "Pantun":
@@ -133,7 +150,7 @@ elif menu == "Pantun":
         with st.spinner("🌀 Sedang membuat pantun..."):
 
             if opsi_model == "Fast":
-                result = generate_pantun_lstm(tema)
+                result = generate_pantun_lstm_remote(tema)
                 full_prompt = f"FastModel - {tema}"
             else:
                 result = generate_pantun_remote(jenis, tema)
