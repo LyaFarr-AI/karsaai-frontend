@@ -106,7 +106,7 @@ elif menu == "Puisi":
     if opsi_model == "Quality":
         st.caption("⚡ Quality (Direkomendasikan) – Output lebih puitis dan bermakna, waktu generate 1–2 menit.")
     else:
-        st.caption("🚀 Fast (Mode Alpha – LSTM) – Hasil lebih cepat, cocok untuk eksplorasi tema sederhana, masih dalam tahap pengembangan.")
+        st.caption("🚀 Fast (LSTM) – Hasil lebih cepat, cocok untuk eksplorasi tema sederhana, dan masih dalam tahap pengembangan.")
 
     # Input tema
     seed = st.text_input("Masukkan tema / kata awal:")
