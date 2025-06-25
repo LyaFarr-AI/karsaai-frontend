@@ -112,6 +112,16 @@ if menu == "Puisi":
 # ========================= PANTUN =========================
 elif menu == "Pantun":
     st.header("🎭 Generator Pantun")
+
+    # Pilihan model
+    opsi_model = st.selectbox("🎛️ Pilih model AI:", ["Quality", "Fast"])
+
+    if opsi_model == "Quality":
+        st.caption("⚡ Quality (Direkomendasikan) – Output lebih bagus, tapi waktu generate 1–2 menit.")
+    else:
+        st.caption("🚀 Fast (Mode Alpha – LSTM) – Output lebih cepat, tapi belum mendukung jenis pantun.")
+
+    # Input pantun
     jenis = st.selectbox("Pilih jenis pantun", [
         "Pantun Cinta", "Pantun Jenaka", "Pantun Pendidikan", "Pantun Agama",
         "Pantun Anak-anak", "Pantun Budi", "Pantun Adat dan Alam", "Pantun Teka-Teki"
@@ -120,9 +130,15 @@ elif menu == "Pantun":
     generate = st.button("Generate Pantun")
 
     if generate and tema:
-        full_prompt = f"{jenis} - {tema}"
         with st.spinner("🌀 Sedang membuat pantun..."):
-            result = generate_pantun_remote(jenis, tema)
+
+            if opsi_model == "Fast":
+                result = generate_pantun_lstm(tema)
+                full_prompt = f"FastModel - {tema}"
+            else:
+                result = generate_pantun_remote(jenis, tema)
+                full_prompt = f"{jenis} - {tema}"
+
         st.subheader("🎭 Hasil Pantun")
         st.markdown(result)
         st.session_state["history"].append(("Pantun", full_prompt, result))
