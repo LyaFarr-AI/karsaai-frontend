@@ -5,6 +5,7 @@ API_URL = "https://lyafarr-ai-backend-api-karsaai.hf.space"
 
 API_URL_CB = "https://lyafarr-ai-chatbot-backend.hf.space"
 
+# Function
 def generate_poem_lstm_remote(prompt):
     response = requests.post(f"{API_URL}/generate-poem", json={"prompt": prompt})
     return response.json().get("result", "❌ Terjadi kesalahan.")
