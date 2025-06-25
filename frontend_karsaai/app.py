@@ -1,17 +1,17 @@
 import streamlit as st
 import requests
 
-#API_URL_CB = "https://lyafarr-ai-chatbot-backend.hf.space/chatbot"
+API_URL = "https://lyafarr-ai-backend-api-karsaai.hf.space"
 
 API_URL_CB = "https://lyafarr-ai-chatbot-backend.hf.space"
 
-#def generate_poem_lstm_remote(prompt):
-#    response = requests.post(f"{API_URL_CB}/generate-puisi", json={"prompt": prompt})
-#    return response.json().get("result", "❌ Terjadi kesalahan.")
-#
-#def generate_pantun_lstm_remote(prompt):
-#    response = requests.post(f"{API_URL_CB}/generate-pantun", json={"prompt": prompt})
-#    return response.json().get("result", "❌ Terjadi kesalahan.")
+def generate_poem_lstm_remote(prompt):
+    response = requests.post(f"{API_URL}/generate-poem", json={"prompt": prompt})
+    return response.json().get("result", "❌ Terjadi kesalahan.")
+
+def generate_pantun_lstm_remote(prompt):
+    response = requests.post(f"{API_URL}/generate-pantun", json={"prompt": prompt})
+    return response.json().get("result", "❌ Terjadi kesalahan.")
 
 
 def chatbot_remote(prompt):
@@ -20,11 +20,11 @@ def chatbot_remote(prompt):
 
 def generate_poem_remote(prompt):
     response = requests.post(f"{API_URL_CB}/chatbot", json={"prompt": f"Tolong buatkan puisi bertema: {prompt}"})
-    return response.json().get("result", "Terjadi kesalahan.")
+    return response.json().get("result", "❌ Terjadi kesalahan.")
 
 def generate_pantun_remote(jenis, prompt):
     response = requests.post(f"{API_URL_CB}/chatbot", json={"prompt": f"Buatkan 1 Pantun saja, dengan {jenis} dan tema {prompt}"})
-    return response.json().get("result", "Terjadi kesalahan.")
+    return response.json().get("result", "❌ Terjadi kesalahan.")
 
 
 st.set_page_config(page_title="AI Poet Generator", page_icon="🧠", layout="centered")
@@ -116,7 +116,7 @@ elif menu == "Puisi":
         with st.spinner("🔄 Sedang membuat puisi..."):
 
             if opsi_model == "Fast":
-                result = generate_poem_lstm(seed)
+                result = generate_poem_lstm_remote(seed)
                 full_prompt = f"FastModel - {seed}"
             else:
                 result = generate_poem_remote(seed)
