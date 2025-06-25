@@ -119,7 +119,7 @@ elif menu == "Pantun":
     if opsi_model == "Quality":
         st.caption("⚡ Quality (Direkomendasikan) – Output lebih bagus, tapi waktu generate 1–2 menit.")
     else:
-        st.caption("🚀 Fast (LSTM) – Output lebih cepat, tapi belum mendukung jenis pantun dan masih tahap pengembangan.")
+        st.caption("🚀 Fast (LSTM) – Output lebih cepat, tapi belum mendukung jenis pantun dan masih dalam tahap pengembangan.")
 
     # Input pantun
     jenis = st.selectbox("Pilih jenis pantun", [
