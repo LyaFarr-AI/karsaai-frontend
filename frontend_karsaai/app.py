@@ -130,7 +130,7 @@ elif menu == "Puisi":
 # ========================= PANTUN =========================
 elif menu == "Pantun":
     st.header("🎭 Generator Pantun")
-
+    st.caption("Generator Pantun masih dalam tahap pengembangan")
     # Pilihan model
     opsi_model = st.selectbox("🎛️ Pilih model AI:", ["Quality", "Fast"])
 
